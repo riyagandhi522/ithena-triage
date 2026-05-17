@@ -17,7 +17,9 @@ frontend/dist-ssr/
 
 # Claude Code local config
 .claude/
-
+# Local AI/tooling
+CLAUDE.md
+ASSIGNMENT.md
 # OS
 .DS_Store
 Thumbs.db

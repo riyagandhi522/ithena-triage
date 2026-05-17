@@ -3,7 +3,7 @@ from google import genai
 
 # NOTE: It is best practice to set your API key as an environment variable.
 # For a quick test, you can uncomment the line below and paste your key inside the quotes.
-os.environ["GEMINI_API_KEY"] = "AIzaSyAsq4-nEmDW0LgzqodXJERkcm7rKbG85Ac"
+os.environ["GEMINI_API_KEY"] = "YOUR_API_KEY_HERE"
 
 def test_gemini_key():
     # Fetch the key from the environment

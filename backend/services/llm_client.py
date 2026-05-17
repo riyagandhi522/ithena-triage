@@ -10,7 +10,7 @@ from services.prompt_builder import build_triage_prompt
 from services.response_parser import parse_llm_response
 
 _MODEL = "gemini-2.5-flash"
-_MAX_TOKENS = 500
+_MAX_TOKENS = 2000
 
 _SERVICE_FALLBACK_REASONING = (
     "AI service temporarily unavailable — please triage manually"
