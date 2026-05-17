@@ -1,0 +1,61 @@
+{
+  "priority": {
+    "low": "低",
+    "medium": "中",
+    "high": "高",
+    "critical": "緊急"
+  },
+  "status": {
+    "open": "未対応",
+    "inProgress": "対応中",
+    "resolved": "解決済み"
+  },
+  "confidence": {
+    "low": "低信頼度",
+    "medium": "中信頼度",
+    "high": "高信頼度"
+  },
+  "category": {
+    "mechanicalFailure": "機械故障",
+    "electrical": "電気系統",
+    "hydraulic": "油圧系統",
+    "softwareControls": "ソフトウェア/制御",
+    "preventiveMaintenance": "予防保全",
+    "unknown": "不明"
+  },
+  "ui": {
+    "accept": "AIの提案を承認",
+    "override": "上書き",
+    "submit": "送信",
+    "loading": "読み込み中…",
+    "error": "エラー",
+    "reviewRecommended": "要確認",
+    "aiUnavailable": "AIトリアージが利用できません。優先度とカテゴリを手動で設定できます。",
+    "manualAssign": "優先度とカテゴリを手動で設定",
+    "minutesAgo": "{{count}}分前",
+    "hoursAgo": "{{count}}時間前",
+    "justNow": "たった今",
+    "expandDescription": "もっと見る",
+    "collapseDescription": "折りたたむ",
+    "accepted": "提案が承認されました",
+    "machineType": "機械タイプ",
+    "aiSuggestion": "AIトリアージ提案",
+    "reasoning": "理由"
+  },
+  "override": {
+    "reason": "上書き理由",
+    "submit": "上書きを送信",
+    "cancel": "キャンセル",
+    "priority": "優先度",
+    "category": "カテゴリ",
+    "reasonPlaceholder": "AIの提案を上書きする理由を説明してください…",
+    "reasonRequired": "上書きの理由を入力してください。",
+    "chips": {
+      "machineTypeNotRecognized": "機械タイプが認識されない",
+      "localContextApplies": "ローカルコンテキストが適用",
+      "slaEscalation": "SLAエスカレーションが必要",
+      "technicianError": "技術者エラーの疑い",
+      "other": "その他"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "status": {
+    "open": "Open",
+    "inProgress": "In Progress",
+    "resolved": "Resolved"
+  },
+  "confidence": {
+    "low": "Low Confidence",
+    "medium": "Medium Confidence",
+    "high": "High Confidence"
+  },
+  "category": {
+    "mechanicalFailure": "Mechanical Failure",
+    "electrical": "Electrical",
+    "hydraulic": "Hydraulic",
+    "softwareControls": "Software/Controls",
+    "preventiveMaintenance": "Preventive Maintenance",
+    "unknown": "Unknown"
+  },
+  "ui": {
+    "accept": "Accept AI Suggestion",
+    "override": "Override",
+    "submit": "Submit",
+    "loading": "Loading…",
+    "error": "Error",
+    "reviewRecommended": "Review recommended",
+    "aiUnavailable": "AI triage unavailable. You can still manually assign priority and category.",
+    "manualAssign": "Manually assign priority and category",
+    "minutesAgo": "{{count}} minutes ago",
+    "hoursAgo": "{{count}} hours ago",
+    "justNow": "Just now",
+    "expandDescription": "Show more",
+    "collapseDescription": "Show less",
+    "accepted": "Suggestion accepted",
+    "machineType": "Machine type",
+    "aiSuggestion": "AI Triage Suggestion",
+    "reasoning": "Reasoning"
+  },
+  "override": {
+    "reason": "Override reason",
+    "submit": "Submit Override",
+    "cancel": "Cancel",
+    "priority": "Priority",
+    "category": "Category",
+    "reasonPlaceholder": "Describe why you're overriding the AI suggestion…",
+    "reasonRequired": "Please provide a reason for the override.",
+    "chips": {
+      "machineTypeNotRecognized": "Machine type not recognized",
+      "localContextApplies": "Local context applies",
+      "slaEscalation": "SLA requires escalation",
+      "technicianError": "Technician error suspected",
+      "other": "Other"
+    }
+  }
+}

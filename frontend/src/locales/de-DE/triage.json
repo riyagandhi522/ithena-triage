@@ -1,0 +1,61 @@
+{
+  "priority": {
+    "low": "Niedrig",
+    "medium": "Mittel",
+    "high": "Hoch",
+    "critical": "Kritisch"
+  },
+  "status": {
+    "open": "Offen",
+    "inProgress": "In Bearbeitung",
+    "resolved": "Gelöst"
+  },
+  "confidence": {
+    "low": "Niedrige Konfidenz",
+    "medium": "Mittlere Konfidenz",
+    "high": "Hohe Konfidenz"
+  },
+  "category": {
+    "mechanicalFailure": "Mechanischer Ausfall",
+    "electrical": "Elektrisch",
+    "hydraulic": "Hydraulisch",
+    "softwareControls": "Software/Steuerung",
+    "preventiveMaintenance": "Vorbeugende Wartung",
+    "unknown": "Unbekannt"
+  },
+  "ui": {
+    "accept": "KI-Vorschlag akzeptieren",
+    "override": "Überschreiben",
+    "submit": "Absenden",
+    "loading": "Laden…",
+    "error": "Fehler",
+    "reviewRecommended": "Überprüfung empfohlen",
+    "aiUnavailable": "KI-Triage nicht verfügbar. Sie können Priorität und Kategorie manuell zuweisen.",
+    "manualAssign": "Priorität und Kategorie manuell zuweisen",
+    "minutesAgo": "vor {{count}} Minuten",
+    "hoursAgo": "vor {{count}} Stunden",
+    "justNow": "Gerade eben",
+    "expandDescription": "Mehr anzeigen",
+    "collapseDescription": "Weniger anzeigen",
+    "accepted": "Vorschlag akzeptiert",
+    "machineType": "Maschinentyp",
+    "aiSuggestion": "KI-Triage-Vorschlag",
+    "reasoning": "Begründung"
+  },
+  "override": {
+    "reason": "Grund für Überschreibung",
+    "submit": "Überschreibung einreichen",
+    "cancel": "Abbrechen",
+    "priority": "Priorität",
+    "category": "Kategorie",
+    "reasonPlaceholder": "Beschreiben Sie, warum Sie den KI-Vorschlag überschreiben…",
+    "reasonRequired": "Bitte geben Sie einen Grund für die Überschreibung an.",
+    "chips": {
+      "machineTypeNotRecognized": "Maschinentyp nicht erkannt",
+      "localContextApplies": "Lokaler Kontext gilt",
+      "slaEscalation": "SLA erfordert Eskalation",
+      "technicianError": "Technikerfehler vermutet",
+      "other": "Sonstige"
+    }
+  }
+}
