@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# Environment — never commit real keys
+backend/.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# Claude Code local config
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
