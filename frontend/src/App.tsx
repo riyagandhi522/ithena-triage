@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getLocale, type SupportedLocale } from "./utils/locale";
 import TriageReviewCard from "./components/TriageReviewCard";
+import CaseStatusBadge from "./components/CaseStatusBadge";
 
 const LOCALES: { code: SupportedLocale; label: string }[] = [
   { code: "en-US", label: "EN" },
@@ -19,7 +20,7 @@ const demoCase = {
 };
 
 export default function App() {
-  const { i18n } = useTranslation("triage");
+  const { t, i18n } = useTranslation("triage");
   const [locale, setLocale] = useState<SupportedLocale>(() =>
     getLocale(navigator.language),
   );
@@ -54,9 +55,19 @@ export default function App() {
         </div>
       </header>
 
-      {/* Triage card */}
-      <main className="max-w-[680px] mx-auto px-4 py-6">
+      {/* Triage card + case status */}
+      <main className="max-w-[680px] mx-auto px-4 py-6 space-y-4">
         <TriageReviewCard {...demoCase} locale={locale} />
+        <div className="bg-white rounded-xl border border-gray-200 shadow-md px-6 py-4">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+            {t("ui.caseStatus")}
+          </p>
+          <CaseStatusBadge
+            status="inProgress"
+            updatedAt={new Date(Date.now() - 30 * 60 * 1000).toISOString()}
+            locale={locale}
+          />
+        </div>
       </main>
     </div>
   );

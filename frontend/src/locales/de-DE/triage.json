@@ -40,7 +40,10 @@
     "accepted": "Vorschlag akzeptiert",
     "machineType": "Maschinentyp",
     "aiSuggestion": "KI-Triage-Vorschlag",
-    "reasoning": "Begründung"
+    "reasoning": "Begründung",
+    "caseStatus": "Fallstatus",
+    "updated": "Aktualisiert",
+    "cannotAcceptUnknown": "Kann nicht akzeptiert werden — Kategorie konnte nicht bestimmt werden"
   },
   "override": {
     "reason": "Grund für Überschreibung",
@@ -48,6 +51,9 @@
     "cancel": "Abbrechen",
     "priority": "Priorität",
     "category": "Kategorie",
+    "categoryOther": "Sonstige (angeben)",
+    "customCategoryPlaceholder": "Benutzerdefinierten Kategorienamen eingeben…",
+    "customCategoryRequired": "Bitte geben Sie einen Kategorienamen ein.",
     "reasonPlaceholder": "Beschreiben Sie, warum Sie den KI-Vorschlag überschreiben…",
     "reasonRequired": "Bitte geben Sie einen Grund für die Überschreibung an.",
     "chips": {

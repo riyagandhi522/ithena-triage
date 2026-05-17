@@ -36,6 +36,15 @@ const PRIORITY_LEFT_BORDER: Record<string, string> = {
   low: "border-l-green-500",
 };
 
+const CATEGORY_KEY: Record<string, string> = {
+  "Mechanical Failure": "mechanicalFailure",
+  Electrical: "electrical",
+  Hydraulic: "hydraulic",
+  "Software/Controls": "softwareControls",
+  "Preventive Maintenance": "preventiveMaintenance",
+  Unknown: "unknown",
+};
+
 const PANEL_BORDER: Record<string, string> = {
   high: "border border-gray-200",
   medium: "border-2 border-dashed border-amber-400",
@@ -166,6 +175,7 @@ function TriageCardContent({
 
   const result = triageResult!;
   const confidence = result.confidence;
+  const isUnknown = result.suggestedCategory === "Unknown";
 
   return (
     <div
@@ -216,7 +226,11 @@ function TriageCardContent({
               <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">
                 {t("override.category")}
               </p>
-              <span className="text-sm text-gray-800 font-medium">{result.suggestedCategory}</span>
+              <span className="text-sm text-gray-800 font-medium">
+                {CATEGORY_KEY[result.suggestedCategory]
+                  ? t(`category.${CATEGORY_KEY[result.suggestedCategory]}`)
+                  : result.suggestedCategory}
+              </span>
             </div>
           </div>
           {/* Right: confidence + reasoning */}
@@ -232,23 +246,34 @@ function TriageCardContent({
 
       {/* Action buttons */}
       {!submitted ? (
-        <div className="flex gap-3">
-          <button
-            type="button"
-            onClick={() => setSubmitted(true)}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-md text-sm font-semibold hover:bg-green-700 active:bg-green-800 transition-colors"
-          >
-            <span aria-hidden="true">✓</span>
-            {t("ui.accept")}
-          </button>
-          <button
-            type="button"
-            onClick={() => setOverride((prev) => ({ ...prev, enabled: !prev.enabled }))}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-semibold hover:bg-gray-50 active:bg-gray-100 transition-colors"
-          >
-            <span aria-hidden="true">✏</span>
-            {t("ui.override")}
-          </button>
+        <div className="space-y-2">
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => setSubmitted(true)}
+              disabled={isUnknown}
+              title={isUnknown ? t("ui.cannotAcceptUnknown") : undefined}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors ${
+                isUnknown
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-green-600 text-white hover:bg-green-700 active:bg-green-800"
+              }`}
+            >
+              <span aria-hidden="true">✓</span>
+              {t("ui.accept")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setOverride((prev) => ({ ...prev, enabled: !prev.enabled }))}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-semibold hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            >
+              <span aria-hidden="true">✏</span>
+              {t("ui.override")}
+            </button>
+          </div>
+          {isUnknown && (
+            <p className="text-xs text-amber-600">{t("ui.cannotAcceptUnknown")}</p>
+          )}
         </div>
       ) : (
         <p

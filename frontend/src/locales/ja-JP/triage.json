@@ -40,7 +40,10 @@
     "accepted": "提案が承認されました",
     "machineType": "機械タイプ",
     "aiSuggestion": "AIトリアージ提案",
-    "reasoning": "理由"
+    "reasoning": "理由",
+    "caseStatus": "ケースステータス",
+    "updated": "更新日時",
+    "cannotAcceptUnknown": "承認不可 — カテゴリを特定できませんでした"
   },
   "override": {
     "reason": "上書き理由",
@@ -48,6 +51,9 @@
     "cancel": "キャンセル",
     "priority": "優先度",
     "category": "カテゴリ",
+    "categoryOther": "その他（指定）",
+    "customCategoryPlaceholder": "カスタムカテゴリ名を入力…",
+    "customCategoryRequired": "カテゴリ名を入力してください。",
     "reasonPlaceholder": "AIの提案を上書きする理由を説明してください…",
     "reasonRequired": "上書きの理由を入力してください。",
     "chips": {

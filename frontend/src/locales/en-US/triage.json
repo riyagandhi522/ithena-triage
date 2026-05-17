@@ -40,7 +40,10 @@
     "accepted": "Suggestion accepted",
     "machineType": "Machine type",
     "aiSuggestion": "AI Triage Suggestion",
-    "reasoning": "Reasoning"
+    "reasoning": "Reasoning",
+    "caseStatus": "Case Status",
+    "updated": "Updated",
+    "cannotAcceptUnknown": "Cannot accept — category could not be determined"
   },
   "override": {
     "reason": "Override reason",
@@ -48,6 +51,9 @@
     "cancel": "Cancel",
     "priority": "Priority",
     "category": "Category",
+    "categoryOther": "Other (specify)",
+    "customCategoryPlaceholder": "Enter custom category name…",
+    "customCategoryRequired": "Please enter a category name.",
     "reasonPlaceholder": "Describe why you're overriding the AI suggestion…",
     "reasonRequired": "Please provide a reason for the override.",
     "chips": {

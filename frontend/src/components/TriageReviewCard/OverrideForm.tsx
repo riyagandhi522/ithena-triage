@@ -29,6 +29,13 @@ const CHIP_KEYS = [
   "other",
 ] as const;
 
+
+const OTHER = "__other__";
+
+function isFixedCategory(value: string): value is (typeof CATEGORIES)[number] {
+  return (CATEGORIES as readonly string[]).includes(value);
+}
+
 export interface OverrideState {
   enabled: boolean;
   priority: string;
@@ -47,12 +54,37 @@ export default function OverrideForm({ override, onOverrideChange, onSubmit, isS
   const { t } = useTranslation("triage");
   const [showValidation, setShowValidation] = useState(false);
 
+  // Separate dropdown selection from custom text so the dropdown stays on "Other"
+  // while the user types in the text field.
+  const [dropdownCategory, setDropdownCategory] = useState<string>(() =>
+    isFixedCategory(override.category) ? override.category : OTHER,
+  );
+  const [customCategory, setCustomCategory] = useState<string>(() =>
+    isFixedCategory(override.category) ? "" : override.category,
+  );
+
   function patch(fields: Partial<OverrideState>) {
     onOverrideChange({ ...override, ...fields });
   }
 
+  function handleDropdownChange(value: string) {
+    setDropdownCategory(value);
+    if (value !== OTHER) {
+      patch({ category: value });
+    } else {
+      // Keep whatever custom text is already in the field
+      patch({ category: customCategory });
+    }
+  }
+
+  function handleCustomCategoryChange(value: string) {
+    setCustomCategory(value);
+    patch({ category: value });
+  }
+
   function handleSubmit() {
-    if (!override.reason.trim()) {
+    const customInvalid = dropdownCategory === OTHER && !customCategory.trim();
+    if (!override.reason.trim() || customInvalid) {
       setShowValidation(true);
       return;
     }
@@ -62,25 +94,30 @@ export default function OverrideForm({ override, onOverrideChange, onSubmit, isS
   return (
     <div className="mt-2 p-4 bg-slate-50 rounded-lg border border-slate-200 border-t-2 border-t-slate-300 space-y-4">
       {/* Reason chips */}
-      <div className="flex flex-wrap gap-2">
-        {CHIP_KEYS.map((key) => {
-          const label = t(`override.chips.${key}`);
-          const selected = override.reason === label;
-          return (
-            <button
-              key={key}
-              type="button"
-              onClick={() => patch({ reason: label })}
-              className={`px-3 py-1 rounded-full text-sm border transition-colors ${
-                selected
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-blue-400"
-              }`}
-            >
-              {label}
-            </button>
-          );
-        })}
+      <div>
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+          Common Reasons
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {CHIP_KEYS.map((key) => {
+            const label = t(`override.chips.${key}`);
+            const selected = override.reason === label;
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => patch({ reason: label })}
+                className={`px-3 py-1 rounded-full text-sm border transition-colors ${
+                  selected
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-blue-400"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Reason textarea */}
@@ -123,8 +160,8 @@ export default function OverrideForm({ override, onOverrideChange, onSubmit, isS
             {t("override.category")}
           </label>
           <select
-            value={override.category}
-            onChange={(e) => patch({ category: e.target.value })}
+            value={dropdownCategory}
+            onChange={(e) => handleDropdownChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {CATEGORIES.map((c) => (
@@ -132,9 +169,26 @@ export default function OverrideForm({ override, onOverrideChange, onSubmit, isS
                 {t(`category.${CATEGORY_KEY[c]}`)}
               </option>
             ))}
+            <option value={OTHER}>{t("override.categoryOther")}</option>
           </select>
         </div>
       </div>
+
+      {/* Custom category text input — shown only when Other is selected */}
+      {dropdownCategory === OTHER && (
+        <div>
+          <input
+            type="text"
+            value={customCategory}
+            onChange={(e) => handleCustomCategoryChange(e.target.value)}
+            placeholder={t("override.customCategoryPlaceholder")}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {showValidation && !customCategory.trim() && (
+            <p className="mt-1 text-sm text-red-600">{t("override.customCategoryRequired")}</p>
+          )}
+        </div>
+      )}
 
       {/* Actions */}
       <div className="flex gap-3">
